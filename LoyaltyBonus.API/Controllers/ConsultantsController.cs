@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LoyaltyBonus.API.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace LoyaltyBonus.API.Controllers {
@@ -19,16 +20,16 @@ namespace LoyaltyBonus.API.Controllers {
 
         //Get all consultants
         [HttpGet]
-        public IActionResult GetConsultants () {
+        public async Task<IActionResult> GetConsultants () {
 
-            var consultats = _context.Consults.ToList ();
+            var consultats = await _context.Consults.ToListAsync ();
             return Ok (consultats);
         }
 
         //Get one consultant
         [HttpGet ("{id}")]
-        public IActionResult GetConsultat (int id) {
-            var consultant = _context.Consults.FirstOrDefault (x => x.Id == id);
+        public async Task<IActionResult> GetConsultat (int id) {
+            var consultant = await _context.Consults.FirstOrDefaultAsync (x => x.Id == id);
             return Ok (consultant);
         }
 
