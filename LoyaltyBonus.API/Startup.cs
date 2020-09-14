@@ -25,6 +25,7 @@ namespace LoyaltyBonus.API {
         public void ConfigureServices (IServiceCollection services) {
             services.AddControllers ();
             services.AddDbContext<DataContext> (x => x.UseSqlite (Configuration.GetConnectionString ("DefaultConnection")));
+            services.AddCors ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,10 +38,14 @@ namespace LoyaltyBonus.API {
 
             app.UseRouting ();
 
+            app.UseCors (x => x.AllowAnyOrigin ().AllowAnyMethod ().AllowAnyMethod ());
+
             app.UseAuthorization ();
 
             app.UseEndpoints (endpoints => {
                 endpoints.MapControllers ();
+                // Note... !!!
+                //endpoints.MapFallbackToController ("Index", "Fallback");
             });
         }
     }
