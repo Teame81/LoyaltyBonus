@@ -7,5 +7,7 @@ namespace LoyaltyBonus.API.Data {
 
         public DbSet<Consult> Consults { get; set; }
 
+        public DbSet<User> Users { get; set; }
+
     }
 }

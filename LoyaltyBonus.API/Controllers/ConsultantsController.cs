@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LoyaltyBonus.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace LoyaltyBonus.API.Controllers {
+    [Authorize]
     [ApiController]
     [Route ("api/[controller]")]
     public class ConsultantsController : ControllerBase {
@@ -27,6 +29,7 @@ namespace LoyaltyBonus.API.Controllers {
         }
 
         //Get one consultant
+        [AllowAnonymous]
         [HttpGet ("{id}")]
         public async Task<IActionResult> GetConsultat (int id) {
             var consultant = await _context.Consults.FirstOrDefaultAsync (x => x.Id == id);
