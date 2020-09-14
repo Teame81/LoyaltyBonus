@@ -5,6 +5,7 @@ Im using a .NET core(3.1.4) API and using Angular(10.1.0) for the SPA-Frontend.
 
 ## Installation and start of development servers
 
+Install Node, Angular and dotnet.
 Use git to clone this project.
 Link: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to install git.
 

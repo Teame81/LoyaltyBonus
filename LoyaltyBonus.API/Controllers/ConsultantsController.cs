@@ -21,6 +21,7 @@ namespace LoyaltyBonus.API.Controllers {
         }
 
         //Get all consultants
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetConsultants () {
 
