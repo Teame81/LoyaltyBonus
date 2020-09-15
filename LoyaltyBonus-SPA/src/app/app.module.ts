@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { RouterModule } from '@angular/router';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppComponent } from './app.component';
 import { from } from 'rxjs';
@@ -34,6 +35,8 @@ import { AddConsultantComponent } from './add-consultant/add-consultant.componen
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     RouterModule.forRoot(appRouts),
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

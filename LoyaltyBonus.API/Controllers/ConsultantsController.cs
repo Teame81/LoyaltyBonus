@@ -46,7 +46,7 @@ namespace LoyaltyBonus.API.Controllers {
             //Validate
 
             consultForAddDto.Name = consultForAddDto.Name.ToLower ();
-            var consultToCreate = new Consult { Name = consultForAddDto.Name, EmploymentDate = DateTime.Today, InvoiceHoursWorkedThisYear = 100 };
+            var consultToCreate = new Consult { Name = consultForAddDto.Name, EmploymentDate = consultForAddDto.EmploymentDate, InvoiceHoursWorkedThisYear = consultForAddDto.InvoiceHoursWorkedThisYear };
             _context.Consults.Add (consultToCreate);
             await _context.SaveChangesAsync ();
 
