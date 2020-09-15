@@ -1,18 +1,16 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">Loyalty Bonus GISYS</a>
+    <a class="navbar-brand" [routerLink]="['/home']">Loyalty Bonus GISYS</a>
 
     <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#"
-          >Home <span class="sr-only">(current)</span></a
-        >
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/home']">Home </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Edit Consultants</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/edit']">Edit Consultants</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Calculate Bonus</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/calculate']">Calculate Bonus</a>
       </li>
     </ul>
 
