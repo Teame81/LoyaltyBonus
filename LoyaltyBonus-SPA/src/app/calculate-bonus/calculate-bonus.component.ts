@@ -26,9 +26,9 @@ export class CalculateBonusComponent implements OnInit {
       (response) => {
         this.consultants = response;
         // tslint:disable-next-line: forin
-        for (let consult of this.consultants) {
+        for (const consult of this.consultants) {
           const employmentDate = new Date(consult.employmentDate);
-          //Cleaning away timie
+          // Cleaning away timie
           consult.employmentDate = consult.employmentDate.split('T')[0];
           consult.EmploymentYears = this.diffTime(employmentDate);
 

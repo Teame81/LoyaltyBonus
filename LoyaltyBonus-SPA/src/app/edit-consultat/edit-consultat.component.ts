@@ -1,3 +1,4 @@
+import { NgForOf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,7 +19,10 @@ export class EditConsultatComponent implements OnInit {
     this.http.get('http://localhost:5000/api/consultants').subscribe(
       (response) => {
         this.consultants = response;
-        //console.log(this.consultants);
+        for (const consult of this.consultants) {
+          // Cleaning away timie
+          consult.employmentDate = consult.employmentDate.split('T')[0];
+        }
       },
       (error) => {
         console.log(error);

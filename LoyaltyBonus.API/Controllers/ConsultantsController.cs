@@ -40,7 +40,6 @@ namespace LoyaltyBonus.API.Controllers {
         }
 
         [AllowAnonymous]
-
         [HttpPost ("addconsult")]
         public async Task<IActionResult> AddConsultant (ConsultForAddDto consultForAddDto) {
             //Validate
@@ -54,5 +53,53 @@ namespace LoyaltyBonus.API.Controllers {
 
         }
 
+        [AllowAnonymous]
+        [HttpPut ("editconsult/{id}")]
+        public async Task<IActionResult> EditConsultant (int id, ConsultForAddDto consultForAddDto) {
+            //Validate
+            var consultant = await _context.Consults.FirstOrDefaultAsync (x => x.Id == id);
+
+            if (id != consultant.Id) {
+                return BadRequest ();
+            }
+            if (consultant == null) {
+                return NotFound ();
+            }
+
+            consultant.Name = consultForAddDto.Name;
+            consultant.EmploymentDate = consultForAddDto.EmploymentDate;
+            consultant.InvoiceHoursWorkedThisYear = consultForAddDto.InvoiceHoursWorkedThisYear;
+
+            try {
+                await _context.SaveChangesAsync ();
+            } catch (DbUpdateConcurrencyException) {
+                if (!ConsultForAddDtoExists (id)) {
+                    return NotFound ();
+                } else {
+                    throw;
+                }
+            }
+
+            return NoContent ();
+
+        }
+
+        [AllowAnonymous]
+        [HttpDelete ("delconsult/{id}")]
+        public async Task<IActionResult> DelConsultant (int id) {
+
+            var consultant = await _context.Consults.FindAsync (id);
+
+            if (consultant == null) {
+                return NotFound ();
+            }
+
+            _context.Consults.Remove (consultant);
+            await _context.SaveChangesAsync ();
+
+            return NoContent ();
+        }
+        private bool ConsultForAddDtoExists (int id) =>
+            _context.Consults.Any (x => x.Id == id);
     }
 }
