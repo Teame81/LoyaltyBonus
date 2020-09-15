@@ -1,5 +1,7 @@
 # Loyalty Bonus
 
+## NOT A COMPLETE GUIDE... (Work in progress)
+
 Loyalty Bonus is a web app for dealing with bonus calulation for consultants.
 Im using a .NET core(3.1.4) API and using Angular(10.1.0) for the SPA-Frontend.
 

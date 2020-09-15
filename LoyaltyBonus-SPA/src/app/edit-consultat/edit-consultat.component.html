@@ -1,1 +1,32 @@
-<p>edit-consultat works!</p>
+<div class="container mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Employment date</th>
+        <th scope="col">Invoice hours this year</th>
+        <th scope="col">Select</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let consult of consultants">
+      <tr>
+        <th scope="row">{{ consult.id }}</th>
+        <td>{{ consult.name }}</td>
+        <td>{{ consult.employmentDate }}</td>
+        <td>{{ consult.invoiceHoursWorkedThisYear }}</td>
+        <td>
+          <div class="form-check">
+            <input
+              class="form-check-input position-static"
+              type="radio"
+              name="selecterConsultRadio"
+              id="{{ consult.id }}"
+              value="option {{ consult.id }}"
+            />
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

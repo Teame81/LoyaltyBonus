@@ -15,6 +15,7 @@ import { RegisterComponent } from './register/register.component';
 import { EditConsultatComponent } from './edit-consultat/edit-consultat.component';
 import { CalculateBonusComponent } from './calculate-bonus/calculate-bonus.component';
 import { appRouts } from './routes';
+import { AddConsultantComponent } from './add-consultant/add-consultant.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { appRouts } from './routes';
     RegisterComponent,
     EditConsultatComponent,
     CalculateBonusComponent,
+    AddConsultantComponent,
   ],
   imports: [
     BrowserModule,

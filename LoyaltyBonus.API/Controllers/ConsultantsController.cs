@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LoyaltyBonus.API.Data;
+using LoyaltyBonus.API.Dtos;
+using LoyaltyBonus.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -35,6 +37,21 @@ namespace LoyaltyBonus.API.Controllers {
         public async Task<IActionResult> GetConsultat (int id) {
             var consultant = await _context.Consults.FirstOrDefaultAsync (x => x.Id == id);
             return Ok (consultant);
+        }
+
+        [AllowAnonymous]
+
+        [HttpPost ("addconsult")]
+        public async Task<IActionResult> AddConsultant (ConsultForAddDto consultForAddDto) {
+            //Validate
+
+            consultForAddDto.Name = consultForAddDto.Name.ToLower ();
+            var consultToCreate = new Consult { Name = consultForAddDto.Name, EmploymentDate = DateTime.Today, InvoiceHoursWorkedThisYear = 100 };
+            _context.Consults.Add (consultToCreate);
+            await _context.SaveChangesAsync ();
+
+            return StatusCode (201);
+
         }
 
     }

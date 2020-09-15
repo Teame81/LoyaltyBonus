@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AddConsultantComponent } from './add-consultant/add-consultant.component';
 import { CalculateBonusComponent } from './calculate-bonus/calculate-bonus.component';
 import { EditConsultatComponent } from './edit-consultat/edit-consultat.component';
 import { HomeComponent } from './home/home.component';
@@ -13,6 +14,7 @@ export const appRouts: Routes = [
     children: [
       { path: 'calculate', component: CalculateBonusComponent },
       { path: 'edit', component: EditConsultatComponent },
+      { path: 'add', component: AddConsultantComponent },
     ],
   },
   { path: '**', redirectTo: '', pathMatch: 'full' },

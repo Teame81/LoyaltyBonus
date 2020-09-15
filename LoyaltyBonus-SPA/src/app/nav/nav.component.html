@@ -7,6 +7,9 @@
         <a class="nav-link" [routerLink]="['/home']">Home </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['/add']">Add Consultants</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" [routerLink]="['/edit']">Edit Consultants</a>
       </li>
       <li class="nav-item" routerLinkActive="active">
@@ -20,11 +23,16 @@
       >
 
       <div class="dropdown-menu" *dropdownMenu>
-        <a class="dropdown-item" href="#">
+        <a class="dropdown-item" [routerLink]="['/add']">
+          <i class="fa fa-user"></i> Add Consultants</a
+        >
+        <a class="dropdown-item" [routerLink]="['/edit']">
           <i class="fa fa-user"></i> Edit Consultants</a
         >
         <div class="dropdown"></div>
-        <a class="dropdown-item" href="#">Calculate Bonus</a>
+        <a class="dropdown-item" [routerLink]="['/calculate']"
+          >Calculate Bonus</a
+        >
         <div class="dropdown"></div>
         <a class="dropdown-item" (click)="logout()">
           <i class="fa fa-sign-out"></i> Logout</a

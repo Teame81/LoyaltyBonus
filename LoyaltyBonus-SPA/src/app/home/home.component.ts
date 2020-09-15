@@ -11,9 +11,7 @@ export class HomeComponent implements OnInit {
   consultants: any;
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.getConsultants();
-  }
+  ngOnInit(): void {}
 
   registerToggle() {
     this.registerMode = true;
@@ -21,15 +19,5 @@ export class HomeComponent implements OnInit {
 
   cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
-  }
-  getConsultants() {
-    this.http.get('http://localhost:5000/api/consultants').subscribe(
-      (response) => {
-        this.consultants = response;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
   }
 }
