@@ -7,6 +7,7 @@
         <th scope="col">Employment date</th>
         <th scope="col">Invoice hours this year</th>
         <th scope="col">Select</th>
+        <th scope="col">Remove</th>
       </tr>
     </thead>
     <tbody *ngFor="let consult of consultants">
@@ -27,11 +28,21 @@
             />
           </div>
         </td>
+        <td>
+          <button
+            (click)="deleteConsult(consult.id)"
+            name="removeConsult"
+            type="button"
+            class="btn btn-primary"
+          >
+            Delete id: {{ consult.id }}
+          </button>
+        </td>
       </tr>
     </tbody>
   </table>
   <div class="container mt-5">
-    <form #registerForm="ngForm" (ngSubmit)="editConsultant()">
+    <form #registerForm="ngForm" (ngSubmit)="editConsultant(currentIdSelected)">
       <h2 class="text-center text-primary">Edit consultant</h2>
       <hr />
       <p>Consultant with Id selected:{{ currentIdSelected }}</p>
@@ -72,9 +83,6 @@
 
       <div class="form-group text-center">
         <button class="btn btn-success" type="submit">Update</button>
-        <button class="btn btn-default" type="button" (click)="deselect()">
-          Deselect
-        </button>
       </div>
     </form>
   </div>

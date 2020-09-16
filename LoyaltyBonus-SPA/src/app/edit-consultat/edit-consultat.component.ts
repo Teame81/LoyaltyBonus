@@ -1,6 +1,7 @@
-import { NgForOf } from '@angular/common';
+import { NgForOf, Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { AlertifyService } from '../_services/alertify.service';
 import { EditconsultService } from '../_services/editconsult.service';
 
@@ -38,8 +39,8 @@ export class EditConsultatComponent implements OnInit {
       }
     );
   }
-  editConsultant() {
-    this.editConsultService.editConsultant(this.model).subscribe(
+  editConsultant(id: any) {
+    this.editConsultService.editConsultant(id, this.model).subscribe(
       () => {
         this.alertify.success('Updated');
         console.log(this.model);
@@ -49,10 +50,9 @@ export class EditConsultatComponent implements OnInit {
         console.log(this.model);
       }
     );
+    location.reload();
   }
-  deselect() {
-    console.log('Deselected');
-  }
+
   whatId(id: any) {
     this.currentIdSelected = id;
     console.log(this.consultants);
@@ -65,6 +65,7 @@ export class EditConsultatComponent implements OnInit {
     );
     for (const consult of this.consultants) {
       if (consult.id === this.currentIdSelected) {
+        nameField.name = consult.name;
         nameField.value = consult.name;
         employmentField.value = consult.employmentDate;
         invoiceField.value = consult.invoiceHoursWorkedThisYear;
@@ -74,5 +75,10 @@ export class EditConsultatComponent implements OnInit {
     // console.log(this.consultants);
 
     console.log(this.currentIdSelected);
+  }
+  deleteConsult(id: any) {
+    console.log('Delete: ' + id);
+    this.editConsultService.deleteConsultant(id).subscribe();
+    location.reload();
   }
 }

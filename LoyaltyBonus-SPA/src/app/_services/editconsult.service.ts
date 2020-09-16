@@ -10,7 +10,17 @@ export class EditconsultService {
 
   constructor(private http: HttpClient) {}
 
-  editConsultant(model: any) {
-    return this.http.put(this.baseUrl + 'editconsult/' + model.id, model);
+  editConsultant(id: any, model: any) {
+    let json = JSON.stringify(model.employmentdate);
+    json = json.substring(1);
+    json = json.split('T')[0];
+    console.log('the date: ' + json);
+    model.employmentdate = json;
+
+    return this.http.put(this.baseUrl + 'editconsult/' + id, model);
+  }
+
+  deleteConsultant(id: any) {
+    return this.http.delete(this.baseUrl + 'delconsult/' + id);
   }
 }
