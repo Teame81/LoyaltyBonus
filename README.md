@@ -14,13 +14,20 @@ Link: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to in
 ```bash
 git clone https://github.com/Teame81/LoyaltyBonus.git
 cd LoyaltyBonus.API
+dotnet ef migrations add init
+dotnet ef database update
 dotnet run
 cd ..
 cd LoyaltyBonus-SPA
+npm install
 ng serve
 ```
 
 You should now have both development servers upp and running. Press to view the frontend [localhost](http://localhost:4200).
+
+## Postman
+Import this link to you postman to test the API.
+https://www.getpostman.com/collections/5849a5298147efa28dbb
 
 ## License
 
