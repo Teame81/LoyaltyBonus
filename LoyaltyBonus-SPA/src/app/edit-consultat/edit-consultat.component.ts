@@ -54,15 +54,6 @@ export class EditConsultatComponent implements OnInit {
       () => {
         this.getConsultants();
 
-        // for (const consult of this.consultants) {
-        //   if (consult.id === this.currentTextId) {
-        //    console.log("From edit");
-        //    console.log(consult);
-        //    this.currentName = consult.name;
-        //    this.currentDate = consult.employmentDate;
-        //    this.currentInvoice = consult.invoiceHoursWorkedThisYear;
-        //   }
-        // }
         this.alertify.success('Updated');
         console.log(formData);
       },
@@ -71,8 +62,7 @@ export class EditConsultatComponent implements OnInit {
         console.log(formData);
       }
     );
-      this.getConsultants();
-    //location.reload();
+  
   }
 
 
