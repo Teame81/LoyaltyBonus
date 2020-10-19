@@ -4,6 +4,8 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AlertifyService } from '../_services/alertify.service';
 import { EditconsultService } from '../_services/editconsult.service';
+import { PipeTransform, Pipe } from '@angular/core';
+
 
 @Component({
   selector: 'app-edit-consultat',
@@ -11,9 +13,13 @@ import { EditconsultService } from '../_services/editconsult.service';
   styleUrls: ['./edit-consultat.component.css'],
 })
 export class EditConsultatComponent implements OnInit {
-  consultants: any;
+  consultants: any = [];
   model: any = {};
-  currentIdSelected: any;
+
+  currentTextId = '';
+  currentName = '';
+  currentDate = '';
+  currentInvoice = '';
 
   constructor(
     private http: HttpClient,
@@ -30,7 +36,7 @@ export class EditConsultatComponent implements OnInit {
       (response) => {
         this.consultants = response;
         for (const consult of this.consultants) {
-          // Cleaning away timie
+          // Cleaning away time
           consult.employmentDate = consult.employmentDate.split('T')[0];
         }
       },
@@ -39,42 +45,59 @@ export class EditConsultatComponent implements OnInit {
       }
     );
   }
-  editConsultant(id: any) {
-    this.editConsultService.editConsultant(id, this.model).subscribe(
+
+
+  editConsultant(formData: any) {
+    console.log('From edit: ');
+    console.log(formData);
+    this.editConsultService.editConsultant(this.currentTextId, formData).subscribe(
       () => {
+        this.getConsultants();
+
+        // for (const consult of this.consultants) {
+        //   if (consult.id === this.currentTextId) {
+        //    console.log("From edit");
+        //    console.log(consult);
+        //    this.currentName = consult.name;
+        //    this.currentDate = consult.employmentDate;
+        //    this.currentInvoice = consult.invoiceHoursWorkedThisYear;
+        //   }
+        // }
         this.alertify.success('Updated');
-        console.log(this.model);
+        console.log(formData);
       },
       (error) => {
         this.alertify.success('Error');
-        console.log(this.model);
+        console.log(formData);
       }
     );
-    location.reload();
+      this.getConsultants();
+    //location.reload();
   }
 
+
   whatId(id: any) {
-    this.currentIdSelected = id;
+    this.currentTextId = id;
     console.log(this.consultants);
-    const nameField = this.elRef.nativeElement.querySelector('[name=username]');
-    const employmentField = this.elRef.nativeElement.querySelector(
-      '[name=date]'
-    );
-    const invoiceField = this.elRef.nativeElement.querySelector(
-      '[name=invoiceHours]'
-    );
+
+ 
+ 
     for (const consult of this.consultants) {
-      if (consult.id === this.currentIdSelected) {
-        nameField.name = consult.name;
-        nameField.value = consult.name;
-        employmentField.value = consult.employmentDate;
-        invoiceField.value = consult.invoiceHoursWorkedThisYear;
+      if (consult.id === this.currentTextId) {
+       console.log("From whatId");
+       console.log(consult);
+       this.currentName = consult.name;
+       this.currentDate = consult.employmentDate;
+       this.currentInvoice = consult.invoiceHoursWorkedThisYear;
       }
     }
 
     // console.log(this.consultants);
 
-    console.log(this.currentIdSelected);
+    console.log(this.currentTextId);
+    console.log(this.currentName);
+    console.log(this.currentDate);
+    console.log(this.currentInvoice);
   }
   deleteConsult(id: any) {
     console.log('Delete: ' + id);

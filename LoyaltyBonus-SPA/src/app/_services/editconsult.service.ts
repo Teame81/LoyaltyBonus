@@ -11,12 +11,18 @@ export class EditconsultService {
   constructor(private http: HttpClient) {}
 
   editConsultant(id: any, model: any) {
-    let json = JSON.stringify(model.employmentdate);
-    json = json.substring(1);
-    json = json.split('T')[0];
-    console.log('the date: ' + json);
-    model.employmentdate = json;
-
+    console.log('Services: ' + 'id: ' + id + ' Model: ' + model);
+    console.log(model);
+    if (model.employmentDate.lenght > 10) {
+      let json = JSON.stringify(model.employmentDate);
+      console.log(model.employmentDate);
+      json = json.substring(1);
+      console.log('after substring:' + json);
+      json = json.split('T')[0];
+      console.log('after split:' + json);
+      console.log('the date: ' + json);
+      model.employmentDate = json;
+    }
     return this.http.put(this.baseUrl + 'editconsult/' + id, model);
   }
 
