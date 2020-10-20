@@ -63,6 +63,8 @@
         class="form-control"
         name="employmentDate"
         [(ngModel)]="currentDate"
+        ng-model-options="{timezone: 'CEST'}"
+        #datepickerYMD="bsDatepicker"
         bsDatepicker
         [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD', isAnimated: true }"
         placeholder="Employment Date"
