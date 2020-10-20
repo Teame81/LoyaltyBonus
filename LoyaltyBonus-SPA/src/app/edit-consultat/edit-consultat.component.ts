@@ -33,7 +33,7 @@ export class EditConsultatComponent implements OnInit {
     this.getConsultants();
   }
   getConsultants() {
-    this.http.get('http://localhost:5000/api/consultants').subscribe(
+    this.http.get('http://api.timmieonline.com/api/consultants').subscribe(
       (response) => {
         this.consultants = response;
         for (const consult of this.consultants) {

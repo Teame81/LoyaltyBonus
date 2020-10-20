@@ -22,7 +22,7 @@ export class CalculateBonusComponent implements OnInit {
   getConsultants(totalEarnings?: number) {
     this.totalPoints = 0;
     this.companyEarnings = 0;
-    this.http.get('http://localhost:5000/api/consultants').subscribe(
+    this.http.get('http://api.timmieonline.com/api/consultants').subscribe(
       (response) => {
         this.consultants = response;
         // tslint:disable-next-line: forin

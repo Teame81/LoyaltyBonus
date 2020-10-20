@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "LoyaltyBonus-SPA"
+  "defaultProject": "LoyaltyBonus-SPA",
+  "cli": {
+    "analytics": false
+  }
 }
