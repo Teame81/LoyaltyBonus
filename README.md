@@ -13,7 +13,7 @@ Link: [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) to in
 
 ```bash
 git clone https://github.com/Teame81/LoyaltyBonus.git
-cd LoyaltyBonus.APIc:\
+cd LoyaltyBonus.API
 dotnet ef migrations add init
 dotnet ef database update
 dotnet run
